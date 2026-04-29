@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Calc Pro">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Calc Pro">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='38' fill='%2306b6d4'/%3E%3Ctext x='96' y='126' text-anchor='middle' font-size='100' font-weight='bold' font-family='system-ui' fill='%23020617'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2306b6d4'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='26' font-weight='bold' font-family='system-ui' fill='%23020617'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Calc%20Pro%22%2C%22short_name%22%3A%22Calc%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%220b0e1a%22%2C%22theme_color%22%3A%2206b6d4%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data:image/svg+xml,%253Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%253E%253Crect width='192' height='192' rx='38' fill='%252306b6d4'/%253E%253Ctext x='96' y='126' text-anchor='middle' font-size='100' font-weight='bold' font-family='system-ui' fill='%2523020617'%253EC%253C/text%253E%253C/svg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/svg+xml%22%7D%5D%7D">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+ background:radial-gradient(ellipse at 50% 40%,#1a1f36,#0b0e1a);
+ display:flex;justify-content:center;align-items:center;
+ font-family:'Segoe UI',system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
+}
+.calculator{
+ width:100%;max-width:420px;background:rgba(22,28,48,.85);
+ -webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);
+ border-radius:30px;padding:24px;
+ border:1px solid rgba(255,255,255,.06);
+ box-shadow:0 30px 80px -10px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04) inset
+}
+.brand{
+ display:flex;justify-content:space-between;margin-bottom:12px;
+ color:rgba(148,163,184,.6);font-size:11px;font-weight:700;
+ letter-spacing:2px;text-transform:uppercase
+}
+.brand span{color:#22d3ee}
+.display{
+ background:#080b1a;border-radius:18px;padding:18px 20px 14px;margin-bottom:20px;
+ border:1px solid rgba(34,211,238,.15);text-align:right;
+ box-shadow:inset 0 6px 14px rgba(0,0,0,.8),0 0 30px rgba(34,211,238,.06)
+}
+.display .expr{
+ color:rgba(148,163,184,.7);font-size:15px;min-height:22px;
+ font-family:'SF Mono','Consolas',monospace;overflow-x:auto;white-space:nowrap;
+ direction:rtl;unicode-bidi:plaintext;margin-bottom:6px
+}
+.display .res{
+ color:#f1f5f9;font-size:38px;font-weight:600;
+ font-family:'SF Mono','Consolas',monospace;overflow-x:auto;
+ text-shadow:0 0 30px rgba(34,211,238,.25);
+ direction:rtl;unicode-bidi:plaintext;
+ white-space:nowrap
+}
+.btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+button{
+ border:none;border-radius:14px;padding:14px 0;font-size:15px;font-weight:600;
+ cursor:pointer;transition:all .09s ease;position:relative;
+ color:#e2e8f0;background:#1e293b;
+ box-shadow:0 5px 0 #0f172a,inset 0 1px 0 rgba(255,255,255,.08);
+ -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+ user-select:none
+}
+button:active{transform:translateY(4px);box-shadow:0 1px 0 #0f172a}
+.btn-num{background:#1e293b}
+.btn-op{background:#334155;color:#22d3ee}
+.btn-func{background:#0f172a;color:rgba(148,163,184,.7);font-size:12px;font-weight:500}
+.btn-clear{background:#450a0a;color:#fca5a5}
+.btn-mem{background:#0f1a0f;color:#86efac;font-size:11px}
+.btn-equal{
+ background:linear-gradient(145deg,#06b6d4,#0891b2);color:#020617;font-weight:800;
+ box-shadow:0 5px 0 #065b75,inset 0 1px 0 rgba(255,255,255,.2)
+}
+.btn-equal:active{box-shadow:0 1px 0 #065b75}
+.btn-sp2{grid-column:span 2}
+@media(max-width:450px){
+ .calculator{padding:16px;border-radius:22px}
+ .btns{gap:6px}
+ button{padding:12px 0;font-size:13px;border-radius:11px}
+ .display .res{font-size:32px}
+}
+/* iPhone notch & dynamic island safe area */
+@supports(padding:max(0px)){
+ .calculator{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+}
+</style>
+</head>
+<body>
+<div class="calculator">
+<div class="brand"><span>⚡ SCIENTIFIC</span> CX-991ES</div>
+<div class="display"><div class="expr" id="expr"></div><div class="res" id="res">0</div></div>
+<div class="btns" id="btns">
+<button class="btn-func" data-a="mode">MODE</button><button class="btn-func" data-a="reset">RESET</button>
+<button class="btn-func" data-a="alpha">ALPHA</button><button class="btn-func" data-a="hyp">HYP</button>
+<button class="btn-func" data-a="setup">SETUP</button>
+
+<button class="btn-func" data-a="sqrt">√</button><button class="btn-func" data-a="square">x²</button>
+<button class="btn-func" data-a="cube">x³</button><button class="btn-func" data-a="power">xʸ</button>
+<button class="btn-func" data-a="ln">ln</button>
+
+<button class="btn-func" data-a="log">log</button><button class="btn-func" data-a="sin">sin</button>
+<button class="btn-func" data-a="cos">cos</button><button class="btn-func" data-a="tan">tan</button>
+<button class="btn-func" data-a="pi">π</button>
+
+<button class="btn-func" data-a="inv">x⁻¹</button><button class="btn-func" data-a="fact">x!</button>
+<button class="btn-func" data-a="sinh">sinh</button><button class="btn-func" data-a="cosh">cosh</button>
+<button class="btn-func" data-a="tanh">tanh</button>
+
+<button class="btn-func" data-a="asin">sin⁻¹</button><button class="btn-func" data-a="acos">cos⁻¹</button>
+<button class="btn-func" data-a="atan">tan⁻¹</button><button class="btn-func" data-a="log2">log₂</button>
+<button class="btn-func" data-a="abs">|x|</button>
+
+<button class="btn-func" data-a="lparen">(</button><button class="btn-func" data-a="rparen">)</button>
+<button class="btn-mem" data-a="mc">MC</button><button class="btn-mem" data-a="mr">MR</button>
+<button class="btn-mem" data-a="mplus">M+</button>
+
+<button class="btn-mem" data-a="mminus">M−</button><button class="btn-clear" data-a="clear">AC</button>
+<button class="btn-clear" data-a="del">⌫</button><button class="btn-func" data-a="exp">EXP</button>
+<button class="btn-func" data-a="ee">EE</button>
+
+<button class="btn-num" data-a="7">7</button><button class="btn-num" data-a="8">8</button>
+<button class="btn-num" data-a="9">9</button><button class="btn-op" data-a="divide">÷</button>
+<button class="btn-op" data-a="percent">%</button>
+
+<button class="btn-num" data-a="4">4</button><button class="btn-num" data-a="5">5</button>
+<button class="btn-num" data-a="6">6</button><button class="btn-op" data-a="multiply">×</button>
+<button class="btn-func" data-a="root3">∛</button>
+
+<button class="btn-num" data-a="1">1</button><button class="btn-num" data-a="2">2</button>
+<button class="btn-num" data-a="3">3</button><button class="btn-op" data-a="subtract">−</button>
+<button class="btn-func" data-a="pow10">10ˣ</button>
+
+<button class="btn-num" data-a="0">0</button><button class="btn-num" data-a="decimal">.</button>
+<button class="btn-func" data-a="neg">±</button><button class="btn-op" data-a="add">+</button>
+<button class="btn-func" data-a="euler">e</button>
+
+<button class="btn-equal btn-sp2" data-a="equals">=</button>
+<button class="btn-func" data-a="ans">ANS</button><button class="btn-func" data-a="rand">RAND</button>
+<button class="btn-func" data-a="deg">DEG</button>
+</div></div>
+<script>
+(function(){
+const S={
+ e:'',d:'0',mem:0,last:0,mode:'DEG',res:false,par:0
+};
+const $e=document.getElementById('expr'),$r=document.getElementById('res');
+function u(){
+ $e.textContent=S.e;
+ let s=String(S.d);$r.classList.remove('s','xs');
+ if(s.length>14)$r.classList.add('xs');else if(s.length>10)$r.classList.add('s');
+ $r.textContent=s;
+}
+function ins(t){
+ if(S.res){S.res=false}
+ S.e+=t;S.d=S.e;u();
+}
+function ev(expr){
+ try{
+  let s=expr.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-')
+   .replace(/π/g,`(${Math.PI})`).replace(/e(?![xp])/g,`(${Math.E})`)
+   .replace(/sinh\(/g,'Math.sinh(').replace(/cosh\(/g,'Math.cosh(').replace(/tanh\(/g,'Math.tanh(')
+   .replace(/sin⁻¹\(/g,'asin(').replace(/cos⁻¹\(/g,'acos(').replace(/tan⁻¹\(/g,'atan(')
+   .replace(/√\(/g,'Math.sqrt(').replace(/∛\(/g,'Math.cbrt(')
+   .replace(/²/g,'**2').replace(/³/g,'**3').replace(/⁻¹/g,'**-1')
+   .replace(/asin\(/g,'Math.asin(').replace(/acos\(/g,'Math.acos(').replace(/atan\(/g,'Math.atan(')
+   .replace(/log₂\(/g,'l2(').replace(/log\(/g,'Math.log10(').replace(/ln\(/g,'Math.log(')
+   .replace(/sin\(/g,'sd(').replace(/cos\(/g,'cd(').replace(/tan\(/g,'td(');
+  function sd(x){
+   if(S.mode==='DEG')return Math.sin(x*Math.PI/180);
+   if(S.mode==='GRAD')return Math.sin(x*Math.PI/200);
+   return Math.sin(x);
+  }
+  function cd(x){
+   if(S.mode==='DEG')return Math.cos(x*Math.PI/180);
+   if(S.mode==='GRAD')return Math.cos(x*Math.PI/200);
+   return Math.cos(x);
+  }
+  function td(x){
+   if(S.mode==='DEG')return Math.tan(x*Math.PI/180);
+   if(S.mode==='GRAD')return Math.tan(x*Math.PI/200);
+   return Math.tan(x);
+  }
+  function l2(x){return Math.log2(x)}
+  function as(x){return Math.asin(x)}
+  function ac(x){return Math.acos(x)}
+  function at(x){return Math.atan(x)}
+  const f=s.replace(/(\d+)!/g,(_,n)=>{let r=1;for(let i=2;i<=+n;i++)r*=i;return r});
+  const r=Function('sd','cd','td','as','ac','at','l2','"use strict";return ('+f+')')(sd,cd,td,as,ac,at,l2);
+  if(typeof r!=='number'||!isFinite(r))return{error:'Error'};
+  return{value:parseFloat(r.toPrecision(12))};
+ }catch(e){return{error:'Error'}}
+}
+function calc(){
+ if(!S.e.trim())return;
+ const r=ev(S.e.replace(/=/g,''));
+ if(r.error){S.d=r.error;S.res=true;u();return}
+ const v=parseFloat(r.value.toPrecision(12));
+ S.d=String(v);S.last=v;S.res=true;u();
+}
+const A={
+ '0':()=>ins('0'),'1':()=>ins('1'),'2':()=>ins('2'),'3':()=>ins('3'),
+ '4':()=>ins('4'),'5':()=>ins('5'),'6':()=>ins('6'),'7':()=>ins('7'),
+ '8':()=>ins('8'),'9':()=>ins('9'),'decimal':()=>ins('.'),
+ 'add':()=>ins('+'),'subtract':()=>ins('−'),'multiply':()=>ins('×'),
+ 'divide':()=>ins('÷'),'percent':()=>ins('%'),'power':()=>ins('^'),
+ 'neg':()=>ins('−'),'exp':()=>ins('^'),'ee':()=>ins('E'),
+ 'lparen':()=>{ins('(');S.par++},
+ 'rparen':()=>{if(S.par>0){ins(')');S.par--}},
+ 'sqrt':()=>ins('√('),'root3':()=>ins('∛('),'square':()=>ins('²'),
+ 'cube':()=>ins('³'),'inv':()=>ins('⁻¹'),'fact':()=>ins('!'),
+ 'sin':()=>ins('sin('),'cos':()=>ins('cos('),'tan':()=>ins('tan('),
+ 'asin':()=>ins('sin⁻¹('),'acos':()=>ins('cos⁻¹('),'atan':()=>ins('tan⁻¹('),
+ 'sinh':()=>ins('sinh('),'cosh':()=>ins('cosh('),'tanh':()=>ins('tanh('),
+ 'log':()=>ins('log('),'log2':()=>ins('log₂('),'ln':()=>ins('ln('),
+ 'abs':()=>ins('Math.abs('),'pow10':()=>ins('10^'),
+ 'pi':()=>ins('π'),'euler':()=>ins('e'),
+ 'mc':()=>{S.mem=0},'mr':()=>{if(S.mem!==0||String(S.mem)==='0')ins(String(S.mem))},
+ 'mplus':()=>{const v=parseFloat(S.d);if(!isNaN(v))S.mem+=v},
+ 'mminus':()=>{const v=parseFloat(S.d);if(!isNaN(v))S.mem-=v},
+ 'ans':()=>{if(S.last!==0||String(S.last)==='0')ins(String(S.last))},
+ 'rand':()=>{const r=Math.random();S.d=String(r);S.e+=String(r);u()},
+ 'deg':()=>{
+  S.mode=S.mode==='DEG'?'RAD':S.mode==='RAD'?'GRAD':'DEG';
+  S.e+=`[${S.mode}]`;u();
+  setTimeout(()=>{S.e=S.e.replace(`[${S.mode}]`,'');u()},1200);
+ },
+ 'clear':()=>{S.e='';S.d='0';S.res=false;S.par=0;u()},
+ 'del':()=>{
+  if(S.res){S.e='';S.d='0';S.res=false}
+  else{S.e=S.e.slice(0,-1);S.d=S.e||'0'}
+  u();
+ },
+ 'equals':()=>{
+  while(S.par>0){S.e+=')';S.par--}
+  S.e=S.e.replace(/[+\-×÷^]$/,'');
+  calc();
+ },
+ 'mode':()=>{S.e+='[MODE]';u();setTimeout(()=>{S.e=S.e.replace('[MODE]','');u()},800)},
+ 'reset':()=>{S.e='';S.d='0';S.mem=0;S.last=0;S.res=false;S.par=0;u()},
+ 'alpha':()=>{S.e+='[α]';u();setTimeout(()=>{S.e=S.e.replace('[α]','');u()},800)},
+ 'hyp':()=>{S.e+='[HYP]';u();setTimeout(()=>{S.e=S.e.replace('[HYP]','');u()},800)},
+ 'setup':()=>{S.e+='[SETUP]';u();setTimeout(()=>{S.e=S.e.replace('[SETUP]','');u()},800)}
+};
+document.addEventListener('keydown',e=>{
+ const k=e.key,m={'Enter':'equals','=':'equals','Backspace':'del','Delete':'clear',
+  'Escape':'clear','(':'lparen',')':'rparen','.':'decimal','%':'percent',
+  '+':'add','-':'subtract','*':'multiply','/':'divide','^':'power'};
+ const a=m[k];
+ if(a&&A[a]){e.preventDefault();A[a]()}
+ if(k==='p'&&!e.ctrlKey&&!e.metaKey){e.preventDefault();A.pi()}
+});
+document.querySelectorAll('#btns button').forEach(b=>{
+ b.addEventListener('click',()=>{const a=b.dataset.a;if(a&&A[a])A[a]()});
+});
+u();
+// Service Worker registration for offline use
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+})();
+</script>
+</body>
+</html>

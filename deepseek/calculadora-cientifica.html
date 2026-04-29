@@ -308,7 +308,7 @@ const A={
  'divide':()=>ins('÷'),'percent':()=>ins('%'),'power':()=>ins('^'),
  'neg':()=>ins('−'),'exp':()=>ins('^'),'ee':()=>ins('E'),
  'lparen':()=>{ins('(');S.par++},
- 'rparen':()=>{const last=S.e.slice(-1);if(S.par>0||/[0-9)]/.test(last)){ins(')');if(S.par>0)S.par--}},
+ 'rparen':()=>{const openC=(S.e.match(/\(/g)||[]).length;const closeC=(S.e.match(/\)/g)||[]).length;if(openC>closeC){ins(')');if(S.par>0)S.par--}},
  'sqrt':()=>{ins('√(');S.par++},'root3':()=>{ins('∛(');S.par++},'square':()=>ins('²'),
  'cube':()=>ins('³'),'inv':()=>ins('⁻¹'),'fact':()=>ins('!'),
  'sin':()=>{ins('sin(');S.par++},'cos':()=>{ins('cos(');S.par++},'tan':()=>{ins('tan(');S.par++},

@@ -308,12 +308,12 @@ if('serviceWorker' in navigator){
 
 // Theme toggle
 const tb=document.getElementById("themeBtn");
-function t(){
+window.t=function(){
   document.body.classList.toggle("light");
   const isL=document.body.classList.contains("light");
   localStorage.setItem("ct",isL?"l":"d");
   tb.textContent=isL?"🌙":"☀️";
-}
+};
 if(localStorage.getItem("ct")==="l"){document.body.classList.add("light");tb.textContent="🌙";}
 
 })();

@@ -12,115 +12,63 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2306b6d4'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='26' font-weight='bold' font-family='system-ui' fill='%23020617'%3EC%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Calc%20Pro%22%2C%22short_name%22%3A%22Calc%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%220b0e1a%22%2C%22theme_color%22%3A%2206b6d4%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data:image/svg+xml,%253Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%253E%253Crect width='192' height='192' rx='38' fill='%252306b6d4'/%253E%253Ctext x='96' y='126' text-anchor='middle' font-size='100' font-weight='bold' font-family='system-ui' fill='%2523020617'%253EC%253C/text%253E%253C/svg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/svg+xml%22%7D%5D%7D">
 <style>
-:root{--bg:radial-gradient(ellipse at 50% 40%,#1a1f36,#0b0e1a);--cb:rgba(22,28,48,.85);--db:#080b1a;--dt:#f1f5f9;--de:rgba(148,163,184,.7);--bb:linear-gradient(180deg,#2a3a50 0%,#1a2a3e 100%);--bt:#e2e8f0;--nb:linear-gradient(180deg,#2e3f56 0%,#1c2b40 100%);--nt:#eef2ff;--ns:#0f172a;--ob:linear-gradient(180deg,#3d5068 0%,#2a3a50 100%);--ot:#67e8f9;--os:#1a293a;--fb:linear-gradient(180deg,#1e2a3a 0%,#0f1720 100%);--ft:rgba(148,163,184,.8);--fs:#070b12;--cbg:linear-gradient(180deg,#7f1d1d 0%,#4a0e0e 100%);--ct:#fecaca;--cs:#2a0808;--mb:linear-gradient(180deg,#14532d 0%,#0a3a1e 100%);--mt:#86efac;--ms:#052010;--eb:linear-gradient(180deg,#22d3ee 0%,#0891b2 100%);--et:#020617;--es:#065b75;--bnd:#22d3ee;--db-bd:rgba(34,211,238,.15);--db-ts:rgba(34,211,238,.25);--db-is:rgba(0,0,0,.8);--calc-bd:rgba(255,255,255,.06);--calc-is:rgba(255,255,255,.04);--calc-bs:rgba(0,0,0,.8);--btn-bd:rgba(255,255,255,.04);--btn-bs:rgba(0,0,0,.5);--btn-it:rgba(255,255,255,.12);--btn-ib:rgba(0,0,0,.2);--btn-nit:rgba(255,255,255,.14);--btn-nib:rgba(0,0,0,.25);--btn-oit:rgba(103,232,249,.15);--btn-oib:rgba(0,0,0,.25);--btn-fit:rgba(255,255,255,.08);--btn-fib:rgba(0,0,0,.3);--btn-fbs:rgba(0,0,0,.4);--btn-cit:rgba(254,202,202,.12);--btn-cib:rgba(0,0,0,.3);--btn-mit:rgba(134,239,172,.12);--btn-mib:rgba(0,0,0,.3);--btn-eit:rgba(255,255,255,.35);--btn-eib:rgba(0,0,0,.2);--tbbg:rgba(255,255,255,0.1);--tbbd:rgba(255,255,255,0.1)}
-body.light{--bg:radial-gradient(ellipse at 50% 40%,#e2e8f0,#cbd5e1);--cb:rgba(248,250,252,0.9);--db:#f8fafc;--dt:#0f172a;--de:#64748b;--bb:linear-gradient(180deg,#ffffff 0%,#e2e8f0 100%);--bt:#475569;--nb:linear-gradient(180deg,#ffffff 0%,#e2e8f0 100%);--nt:#1e293b;--ns:#94a3b8;--ob:linear-gradient(180deg,#f1f5f9 0%,#cbd5e1 100%);--ot:#0284c7;--os:#94a3b8;--fb:linear-gradient(180deg,#ffffff 0%,#f1f5f9 100%);--ft:#475569;--fs:#cbd5e1;--cbg:linear-gradient(180deg,#fca5a5 0%,#ef4444 100%);--ct:#7f1d1d;--cs:#b91c1c;--mb:linear-gradient(180deg,#bbf7d0 0%,#86efac 100%);--mt:#14532d;--ms:#4ade80;--eb:linear-gradient(180deg,#22d3ee 0%,#0891b2 100%);--et:#020617;--es:#065b75;--bnd:#0284c7;--db-bd:rgba(2,132,199,.15);--db-ts:rgba(2,132,199,.2);--db-is:rgba(0,0,0,.1);--calc-bd:rgba(0,0,0,.06);--calc-is:rgba(255,255,255,.8);--calc-bs:rgba(0,0,0,.1);--btn-bd:rgba(0,0,0,.04);--btn-bs:rgba(0,0,0,.15);--btn-it:rgba(255,255,255,.7);--btn-ib:rgba(0,0,0,.08);--btn-nit:rgba(255,255,255,.7);--btn-nib:rgba(0,0,0,.08);--btn-oit:rgba(2,132,199,.12);--btn-oib:rgba(0,0,0,.08);--btn-fit:rgba(255,255,255,.6);--btn-fib:rgba(0,0,0,.06);--btn-fbs:rgba(0,0,0,.1);--btn-cit:rgba(127,29,29,.15);--btn-cib:rgba(0,0,0,.15);--btn-mit:rgba(20,83,45,.15);--btn-mib:rgba(0,0,0,.15);--btn-eit:rgba(255,255,255,.5);--btn-eib:rgba(0,0,0,.15);--tbbg:rgba(0,0,0,0.05);--tbbd:rgba(0,0,0,0.1)}
-
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;overflow:hidden}
 body{
- background:var(--bg);
+ background:radial-gradient(ellipse at 50% 40%,#1a1f36,#0b0e1a);
  display:flex;justify-content:center;align-items:center;
  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
 }
 .calculator{
- width:100%;max-width:420px;background:var(--cb);
+ width:100%;max-width:420px;background:rgba(22,28,48,.85);
  -webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);
  border-radius:30px;padding:24px;
- border:1px solid var(--calc-bd);
- box-shadow:0 30px 80px -10px var(--calc-bs),0 0 0 1px var(--calc-is) inset
+ border:1px solid rgba(255,255,255,.06);
+ box-shadow:0 30px 80px -10px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04) inset
 }
 .brand{
  display:flex;justify-content:space-between;margin-bottom:12px;
- color:var(--de);font-size:11px;font-weight:700;
+ color:rgba(148,163,184,.6);font-size:11px;font-weight:700;
  letter-spacing:2px;text-transform:uppercase
 }
-.brand span{color:var(--bnd)}
+.brand span{color:#22d3ee}
 .display{
- background:var(--db);border-radius:18px;padding:18px 20px 14px;margin-bottom:20px;
- border:1px solid var(--db-bd);text-align:right;
- box-shadow:inset 0 6px 14px var(--db-is),0 0 30px var(--db-ts)
+ background:#080b1a;border-radius:18px;padding:18px 20px 14px;margin-bottom:20px;
+ border:1px solid rgba(34,211,238,.15);text-align:right;
+ box-shadow:inset 0 6px 14px rgba(0,0,0,.8),0 0 30px rgba(34,211,238,.06)
 }
 .display .expr{
- color:var(--de);font-size:15px;min-height:22px;
+ color:rgba(148,163,184,.7);font-size:15px;min-height:22px;
  font-family:'SF Mono','Consolas',monospace;overflow-x:auto;white-space:nowrap;
  direction:rtl;unicode-bidi:plaintext;margin-bottom:6px
 }
 .display .res{
- color:var(--dt);font-size:38px;font-weight:600;
+ color:#f1f5f9;font-size:38px;font-weight:600;
  font-family:'SF Mono','Consolas',monospace;overflow-x:auto;
- text-shadow:0 0 30px var(--db-ts);
+ text-shadow:0 0 30px rgba(34,211,238,.25);
  direction:rtl;unicode-bidi:plaintext;
  white-space:nowrap
 }
 .btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 button{
  border:none;border-radius:14px;padding:14px 0;font-size:15px;font-weight:600;
- cursor:pointer;position:relative;
- color:var(--bt);
+ cursor:pointer;transition:all .09s ease;position:relative;
+ color:#e2e8f0;background:#1e293b;
+ box-shadow:0 5px 0 #0f172a,inset 0 1px 0 rgba(255,255,255,.08);
  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
- user-select:none;
- transition:transform .07s cubic-bezier(.4,0,.2,1),box-shadow .07s cubic-bezier(.4,0,.2,1);
- background:var(--bb);
- box-shadow:0 7px 0 var(--ns),0 9px 10px -3px var(--btn-bs),inset 0 2px 0 var(--btn-it),inset 0 -2px 0 var(--btn-ib);border-bottom:2px solid var(--btn-bd);
+ user-select:none
 }
-button:active{
- transform:translateY(6px);
- box-shadow:0 1px 0 var(--ns),0 3px 6px -2px var(--btn-bs),inset 0 2px 0 var(--btn-it),inset 0 -1px 0 var(--btn-ib);
-}
-.btn-num{
- background:var(--nb);
- box-shadow:0 7px 0 var(--ns),0 9px 10px -3px var(--btn-bs),inset 0 2px 0 var(--btn-nit),inset 0 -2px 0 var(--btn-nib);color:var(--nt);
-}
-.btn-num:active{
- transform:translateY(6px);
- box-shadow:0 1px 0 var(--ns),0 3px 6px -2px var(--btn-bs),inset 0 2px 0 var(--btn-nit),inset 0 -1px 0 var(--btn-nib);
-}
-.btn-op{
- background:var(--ob);
- color:var(--ot);
- box-shadow:0 7px 0 var(--os),0 9px 10px -3px var(--btn-bs),inset 0 2px 0 var(--btn-oit),inset 0 -2px 0 var(--btn-oib);
-}
-.btn-op:active{
- transform:translateY(6px);
- box-shadow:0 1px 0 var(--os),0 3px 6px -2px var(--btn-bs),inset 0 2px 0 var(--btn-oit),inset 0 -1px 0 var(--btn-oib);
-}
-.btn-func{
- background:var(--fb);
- color:var(--ft);
- font-size:12px;font-weight:500;
- box-shadow:0 6px 0 var(--fs),0 8px 8px -3px var(--btn-fbs),inset 0 2px 0 var(--btn-fit),inset 0 -2px 0 var(--btn-fib);
-}
-.btn-func:active{
- transform:translateY(5px);
- box-shadow:0 1px 0 var(--fs),0 3px 5px -2px var(--btn-fbs),inset 0 2px 0 var(--btn-fit),inset 0 -1px 0 var(--btn-fib);
-}
-.btn-clear{
- background:var(--cbg);
- color:var(--ct);
- box-shadow:0 7px 0 var(--cs),0 9px 10px -3px var(--btn-bs),inset 0 2px 0 var(--btn-cit),inset 0 -2px 0 var(--btn-cib);
-}
-.btn-clear:active{
- transform:translateY(6px);
- box-shadow:0 1px 0 var(--cs),0 3px 6px -2px var(--btn-bs),inset 0 2px 0 var(--btn-cit),inset 0 -1px 0 var(--btn-cib);
-}
-.btn-mem{
- background:var(--mb);
- color:var(--mt);font-size:11px;
- box-shadow:0 6px 0 var(--ms),0 8px 8px -3px var(--btn-fbs),inset 0 2px 0 var(--btn-mit),inset 0 -2px 0 var(--btn-mib);
-}
-.btn-mem:active{
- transform:translateY(5px);
- box-shadow:0 1px 0 var(--ms),0 3px 5px -2px var(--btn-fbs),inset 0 2px 0 var(--btn-mit),inset 0 -1px 0 var(--btn-mib);
-}
+button:active{transform:translateY(4px);box-shadow:0 1px 0 #0f172a}
+.btn-num{background:#1e293b}
+.btn-op{background:#334155;color:#22d3ee}
+.btn-func{background:#0f172a;color:rgba(148,163,184,.7);font-size:12px;font-weight:500}
+.btn-clear{background:#450a0a;color:#fca5a5}
+.btn-mem{background:#0f1a0f;color:#86efac;font-size:11px}
 .btn-equal{
- background:var(--eb);
- color:var(--et);font-weight:800;
- box-shadow:0 7px 0 var(--es),0 9px 10px -3px var(--btn-bs),inset 0 2px 0 var(--btn-eit),inset 0 -2px 0 var(--btn-eib);
+ background:linear-gradient(145deg,#06b6d4,#0891b2);color:#020617;font-weight:800;
+ box-shadow:0 5px 0 #065b75,inset 0 1px 0 rgba(255,255,255,.2)
 }
-.btn-equal:active{
- transform:translateY(6px);
- box-shadow:0 1px 0 var(--es),0 3px 6px -2px var(--btn-bs),inset 0 2px 0 var(--btn-eit),inset 0 -1px 0 var(--btn-eib);
-}
+.btn-equal:active{box-shadow:0 1px 0 #065b75}
 .btn-sp2{grid-column:span 2}
 @media(max-width:450px){
  .calculator{padding:16px;border-radius:22px}
@@ -128,6 +76,7 @@ button:active{
  button{padding:12px 0;font-size:13px;border-radius:11px}
  .display .res{font-size:32px}
 }
+/* iPhone notch & dynamic island safe area */
 @supports(padding:max(0px)){
  .calculator{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
 }
@@ -135,7 +84,7 @@ button:active{
 </head>
 <body>
 <div class="calculator">
-<div class="brand"><span>⚡ SCIENTIFIC</span> CX-991ES <span id="themeBtn" style="cursor:pointer;font-size:14px;background:var(--tbbg);border-radius:8px;padding:2px 8px;border:1px solid var(--tbbd);transition:all 0.2s" onclick="t()">☀️</span></div>
+<div class="brand"><span>⚡ SCIENTIFIC</span> CX-991ES</div>
 <div class="display"><div class="expr" id="expr"></div><div class="res" id="res">0</div></div>
 <div class="btns" id="btns">
 <button class="btn-func" data-a="mode">MODE</button><button class="btn-func" data-a="reset">RESET</button>
@@ -253,14 +202,14 @@ const A={
  'divide':()=>ins('÷'),'percent':()=>ins('%'),'power':()=>ins('^'),
  'neg':()=>ins('−'),'exp':()=>ins('^'),'ee':()=>ins('E'),
  'lparen':()=>{ins('(');S.par++},
- 'rparen':()=>{const openC=(S.e.match(/\(/g)||[]).length;const closeC=(S.e.match(/\)/g)||[]).length;if(openC>closeC){ins(')');if(S.par>0)S.par--}},
- 'sqrt':()=>{ins('√(');S.par++},'root3':()=>{ins('∛(');S.par++},'square':()=>ins('²'),
+ 'rparen':()=>{if(S.par>0){ins(')');S.par--}},
+ 'sqrt':()=>ins('√('),'root3':()=>ins('∛('),'square':()=>ins('²'),
  'cube':()=>ins('³'),'inv':()=>ins('⁻¹'),'fact':()=>ins('!'),
- 'sin':()=>{ins('sin(');S.par++},'cos':()=>{ins('cos(');S.par++},'tan':()=>{ins('tan(');S.par++},
- 'asin':()=>{ins('sin⁻¹(');S.par++},'acos':()=>{ins('cos⁻¹(');S.par++},'atan':()=>{ins('tan⁻¹(');S.par++},
- 'sinh':()=>{ins('sinh(');S.par++},'cosh':()=>{ins('cosh(');S.par++},'tanh':()=>{ins('tanh(');S.par++},
- 'log':()=>{ins('log(');S.par++},'log2':()=>{ins('log₂(');S.par++},'ln':()=>{ins('ln(');S.par++},
- 'abs':()=>{ins('Math.abs(');S.par++},'pow10':()=>ins('10^'),
+ 'sin':()=>ins('sin('),'cos':()=>ins('cos('),'tan':()=>ins('tan('),
+ 'asin':()=>ins('sin⁻¹('),'acos':()=>ins('cos⁻¹('),'atan':()=>ins('tan⁻¹('),
+ 'sinh':()=>ins('sinh('),'cosh':()=>ins('cosh('),'tanh':()=>ins('tanh('),
+ 'log':()=>ins('log('),'log2':()=>ins('log₂('),'ln':()=>ins('ln('),
+ 'abs':()=>ins('Math.abs('),'pow10':()=>ins('10^'),
  'pi':()=>ins('π'),'euler':()=>ins('e'),
  'mc':()=>{S.mem=0},'mr':()=>{if(S.mem!==0||String(S.mem)==='0')ins(String(S.mem))},
  'mplus':()=>{const v=parseFloat(S.d);if(!isNaN(v))S.mem+=v},
@@ -305,17 +254,6 @@ u();
 if('serviceWorker' in navigator){
  navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
-
-// Theme toggle
-const tb=document.getElementById("themeBtn");
-function t(){
-  document.body.classList.toggle("light");
-  const isL=document.body.classList.contains("light");
-  localStorage.setItem("ct",isL?"l":"d");
-  tb.textContent=isL?"🌙":"☀️";
-}
-if(localStorage.getItem("ct")==="l"){document.body.classList.add("light");tb.textContent="🌙";}
-
 })();
 </script>
 </body>

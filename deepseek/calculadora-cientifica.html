@@ -52,23 +52,130 @@ body{
 .btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 button{
  border:none;border-radius:14px;padding:14px 0;font-size:15px;font-weight:600;
- cursor:pointer;transition:all .09s ease;position:relative;
- color:#e2e8f0;background:#1e293b;
- box-shadow:0 5px 0 #0f172a,inset 0 1px 0 rgba(255,255,255,.08);
+ cursor:pointer;position:relative;
+ color:#e2e8f0;
  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
- user-select:none
+ user-select:none;
+ transition:transform .07s cubic-bezier(.4,0,.2,1),box-shadow .07s cubic-bezier(.4,0,.2,1);
+ background:linear-gradient(180deg,#2a3a50 0%,#1a2a3e 100%);
+ box-shadow:
+  0 7px 0 #0f172a,
+  0 9px 10px -3px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.12),
+  inset 0 -2px 0 rgba(0,0,0,.2);
+ border-bottom:2px solid rgba(255,255,255,.04);
 }
-button:active{transform:translateY(4px);box-shadow:0 1px 0 #0f172a}
-.btn-num{background:#1e293b}
-.btn-op{background:#334155;color:#22d3ee}
-.btn-func{background:#0f172a;color:rgba(148,163,184,.7);font-size:12px;font-weight:500}
-.btn-clear{background:#450a0a;color:#fca5a5}
-.btn-mem{background:#0f1a0f;color:#86efac;font-size:11px}
+button:active{
+ transform:translateY(6px);
+ box-shadow:
+  0 1px 0 #0f172a,
+  0 3px 6px -2px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.12),
+  inset 0 -1px 0 rgba(0,0,0,.2);
+}
+.btn-num{
+ background:linear-gradient(180deg,#2e3f56 0%,#1c2b40 100%);
+ box-shadow:
+  0 7px 0 #0f172a,
+  0 9px 10px -3px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.14),
+  inset 0 -2px 0 rgba(0,0,0,.25);
+ color:#eef2ff;
+}
+.btn-num:active{
+ transform:translateY(6px);
+ box-shadow:
+  0 1px 0 #0f172a,
+  0 3px 6px -2px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.14),
+  inset 0 -1px 0 rgba(0,0,0,.25);
+}
+.btn-op{
+ background:linear-gradient(180deg,#3d5068 0%,#2a3a50 100%);
+ color:#67e8f9;
+ box-shadow:
+  0 7px 0 #1a293a,
+  0 9px 10px -3px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(103,232,249,.15),
+  inset 0 -2px 0 rgba(0,0,0,.25);
+}
+.btn-op:active{
+ transform:translateY(6px);
+ box-shadow:
+  0 1px 0 #1a293a,
+  0 3px 6px -2px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(103,232,249,.15),
+  inset 0 -1px 0 rgba(0,0,0,.25);
+}
+.btn-func{
+ background:linear-gradient(180deg,#1e2a3a 0%,#0f1720 100%);
+ color:rgba(148,163,184,.8);
+ font-size:12px;font-weight:500;
+ box-shadow:
+  0 6px 0 #070b12,
+  0 8px 8px -3px rgba(0,0,0,.4),
+  inset 0 2px 0 rgba(255,255,255,.08),
+  inset 0 -2px 0 rgba(0,0,0,.3);
+}
+.btn-func:active{
+ transform:translateY(5px);
+ box-shadow:
+  0 1px 0 #070b12,
+  0 3px 5px -2px rgba(0,0,0,.4),
+  inset 0 2px 0 rgba(255,255,255,.08),
+  inset 0 -1px 0 rgba(0,0,0,.3);
+}
+.btn-clear{
+ background:linear-gradient(180deg,#7f1d1d 0%,#4a0e0e 100%);
+ color:#fecaca;
+ box-shadow:
+  0 7px 0 #2a0808,
+  0 9px 10px -3px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(254,202,202,.12),
+  inset 0 -2px 0 rgba(0,0,0,.3);
+}
+.btn-clear:active{
+ transform:translateY(6px);
+ box-shadow:
+  0 1px 0 #2a0808,
+  0 3px 6px -2px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(254,202,202,.12),
+  inset 0 -1px 0 rgba(0,0,0,.3);
+}
+.btn-mem{
+ background:linear-gradient(180deg,#14532d 0%,#0a3a1e 100%);
+ color:#86efac;font-size:11px;
+ box-shadow:
+  0 6px 0 #052010,
+  0 8px 8px -3px rgba(0,0,0,.4),
+  inset 0 2px 0 rgba(134,239,172,.12),
+  inset 0 -2px 0 rgba(0,0,0,.3);
+}
+.btn-mem:active{
+ transform:translateY(5px);
+ box-shadow:
+  0 1px 0 #052010,
+  0 3px 5px -2px rgba(0,0,0,.4),
+  inset 0 2px 0 rgba(134,239,172,.12),
+  inset 0 -1px 0 rgba(0,0,0,.3);
+}
 .btn-equal{
- background:linear-gradient(145deg,#06b6d4,#0891b2);color:#020617;font-weight:800;
- box-shadow:0 5px 0 #065b75,inset 0 1px 0 rgba(255,255,255,.2)
+ background:linear-gradient(180deg,#22d3ee 0%,#0891b2 100%);
+ color:#020617;font-weight:800;
+ box-shadow:
+  0 7px 0 #065b75,
+  0 9px 10px -3px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.35),
+  inset 0 -2px 0 rgba(0,0,0,.2);
 }
-.btn-equal:active{box-shadow:0 1px 0 #065b75}
+.btn-equal:active{
+ transform:translateY(6px);
+ box-shadow:
+  0 1px 0 #065b75,
+  0 3px 6px -2px rgba(0,0,0,.5),
+  inset 0 2px 0 rgba(255,255,255,.35),
+  inset 0 -1px 0 rgba(0,0,0,.2);
+}
 .btn-sp2{grid-column:span 2}
 @media(max-width:450px){
  .calculator{padding:16px;border-radius:22px}
@@ -76,7 +183,6 @@ button:active{transform:translateY(4px);box-shadow:0 1px 0 #0f172a}
  button{padding:12px 0;font-size:13px;border-radius:11px}
  .display .res{font-size:32px}
 }
-/* iPhone notch & dynamic island safe area */
 @supports(padding:max(0px)){
  .calculator{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
 }

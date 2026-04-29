@@ -1,10 +1,14 @@
-const CACHE = 'calc-pro-v1';
-const URLS = ['/deepseek/calculadora-cientifica.html'];
+const CACHE = 'calc-pro-v2';
+const URLS = ['./calculadora-cientifica.html'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
-  e.waitUntil(clients.claim());
+  e.waitUntil(caches.open(CACHE).then(c => {
+    return caches.keys().then(keys => {
+      return Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)));
+    });
+  }).then(() => clients.claim()));
 });
 self.addEventListener('fetch', e => {
   e.respondWith(
